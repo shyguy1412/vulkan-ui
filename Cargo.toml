@@ -1,0 +1,15 @@
+[package]
+name = "vulkan-ui"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+# dev.panic = "abort"
+# release.panic = "abort"
+
+[dependencies]
+vulkano = { version = "0.35.2"}
+vulkano-shaders = "0.35.0"
+
+[dependencies.jafw]
+path = "./jafw"
