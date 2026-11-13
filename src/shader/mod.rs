@@ -1,13 +1,38 @@
-mod vs {
+use vulkano::{buffer::BufferContents, pipeline::graphics::vertex_input::Vertex};
+
+#[derive(BufferContents, Vertex)]
+#[repr(C)]
+pub struct MyVertex {
+    #[format(R32G32_SFLOAT)]
+    pub position: [f32; 2],
+}
+
+pub mod vs {
     vulkano_shaders::shader! {
         ty: "vertex",
-        path: "src/shader/vertex.glsl"
+        src: "
+            #version 460
+
+            layout(location = 0) in vec2 position;
+
+            void main() {
+                gl_Position = vec4(position, 0.0, 1.0);
+            }
+        ",
     }
 }
 
-mod fs {
+pub mod fs {
     vulkano_shaders::shader! {
         ty: "fragment",
-        path: "src/shader/fragment.glsl"
+        src: "
+            #version 460
+
+            layout(location = 0) out vec4 f_color;
+
+            void main() {
+                f_color = vec4(1.0, 0.0, 0.0, 1.0);
+            }
+        ",
     }
 }

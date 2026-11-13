@@ -113,4 +113,9 @@ impl super::Window for Window {
             .map(crate::Event::XEvent)
             .ok()
     }
+
+    fn inner_size(&self) -> [u32; 2] {
+        //todo actually implement real values
+        [150, 150]
+    }
 }

@@ -40,6 +40,7 @@ pub trait Window: HasWindowHandle + HasDisplayHandle + Send + Sync + Sized {
     fn new() -> Result<Self>;
     fn title(&self, title: &dyn std::fmt::Display) -> Result<()>;
     fn next_event(&self) -> Option<Event>;
+    fn inner_size(&self) -> [u32; 2];
 }
 
 pub fn open_window() -> Result<Arc<impl Window>> {
